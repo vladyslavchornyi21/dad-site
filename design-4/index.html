@@ -55,7 +55,6 @@
   .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:.4s var(--ease);color:#fff}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
   .topbar.light{color:var(--text)}
-  .topbar.hide{transform:translateY(-110%)}
   .logo{display:flex;align-items:center;gap:10px}
   .logo-mark{display:flex;align-items:center;font-weight:800;font-size:28px;letter-spacing:-1px;line-height:1}
   .logo-mark svg{width:32px;height:32px}
@@ -69,12 +68,16 @@
   .top-actions{display:flex;align-items:center;gap:10px}
   .icon-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(11,22,16,.42);transition:.25s;position:relative;cursor:pointer;color:inherit}
   .topbar.light .icon-btn{border-color:var(--line-l);background:rgba(255,255,255,.92)}
-  .icon-btn:hover{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}
+  @media (hover:hover){.icon-btn:hover{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}}
   .icon-btn .tip{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px);background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
   .icon-btn:hover .tip{opacity:1;transform:translate(-50%,0)}
   .top-actions .cta-btn{padding:5px 5px 5px 20px;font-size:14px}
   .top-actions .cta-btn .arr{width:36px;height:36px}
   .menu-btn{display:none}
+  .menu-btn .ic-close{display:none}
+  .topbar.menu-open .menu-btn .ic-open{display:none}
+  .topbar.menu-open .menu-btn .ic-close{display:block}
+  section[id],header[id]{scroll-margin-top:72px}
 
   /* Повноекранне меню (мобільне) */
   .overlay{position:fixed;inset:0;z-index:99;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:100px 32px 40px;clip-path:circle(0% at calc(100% - 52px) 40px);transition:clip-path .6s var(--ease);visibility:hidden}
@@ -271,13 +274,33 @@
   }
   @media (max-width:900px){
     .wrap{padding:0 20px}
-    .pill-nav,.top-actions .cta-btn,.top-actions .icon-btn{display:none}
+    /* шапка: закріплена, з кабінетом і меню */
+    .topbar{padding:10px 0;transition:background .3s,box-shadow .3s,color .3s}
+    .topbar .wrap{gap:12px}
+    .topbar.scrolled{background:rgba(11,22,16,.95);box-shadow:0 6px 20px rgba(0,0,0,.18)}
+    .topbar.scrolled.light{background:rgba(250,248,242,.97);box-shadow:0 1px 0 var(--line-l),0 6px 20px rgba(0,0,0,.05)}
+    .topbar.menu-open,.topbar.menu-open.scrolled{background:transparent;box-shadow:none;color:#fff}
+    .pill-nav,.top-actions .cta-btn{display:none}
+    .top-actions{gap:8px}
+    .top-actions .icon-btn{width:44px;height:44px}
+    .icon-btn .tip{display:none}
     .menu-btn{display:grid}
-    .menu-btn.x svg path:nth-child(1){transform:translateY(5px) rotate(45deg);transform-origin:center}
-    .hero{min-height:640px}
-    .hero-content{justify-content:flex-end;padding-top:0;padding-bottom:40px}
-    .hero-row{margin-top:26px}
+    .logo-mark{font-size:26px}
+    .logo-mark svg{width:30px;height:30px}
+    /* перший екран */
+    .hero{height:auto;min-height:max(600px,100vh);min-height:max(600px,100svh);max-height:none;display:flex;flex-direction:column}
+    .hero-content{flex:1;height:auto;justify-content:flex-start;padding-top:96px;padding-bottom:28px}
+    .hero-content > .eyebrow{margin-top:auto}
+    .hero .eyebrow{font-size:11px;letter-spacing:.1em;margin-bottom:18px}
+    .hero .eyebrow::before{width:18px}
+    .hero-row{margin-top:22px;gap:24px}
+    .hero-lead{font-size:16.5px}
+    .hero-actions{gap:18px;margin-top:22px}
     .dir-card{min-width:0;width:100%}
+    .dir-card a{padding:13px 14px;font-size:14.5px}
+    /* повноекранне меню */
+    .overlay{justify-content:flex-start;padding:96px 20px calc(32px + env(safe-area-inset-bottom));overflow-y:auto}
+    .overlay .cta-btn{margin-top:28px}
     .sec{padding:90px 0}
     .facts{grid-template-columns:1fr 1fr;margin-top:60px}
     .fact,.fact + .fact{padding:26px 16px 26px 0;border-left:0}
@@ -307,9 +330,21 @@
     .form{padding:24px}
     .foot-grid{grid-template-columns:1fr 1fr}
     .foot-grid > div:first-child{grid-column:1 / -1}
-    .float-cta{display:inline-flex;position:fixed;right:16px;bottom:16px;z-index:90;padding:5px 5px 5px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);transform:translateY(120px);transition:.4s var(--ease)}
+    .field input{font-size:16px}
+    .wordmark{white-space:normal;font-size:clamp(44px,15vw,120px);line-height:.92}
+    .foot-bottom{flex-direction:column;gap:6px}
+    .float-cta{display:inline-flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:90;padding:5px 5px 5px 18px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);transform:translateY(120px);transition:.4s var(--ease)}
     .float-cta .arr{width:38px;height:38px}
     .float-cta.show{transform:none}
+  }
+  @media (max-width:430px){.hero .since{display:none}}
+  @media (max-width:380px){
+    .wrap{padding:0 16px}
+    .logo-text{display:none}
+    .hero h1{font-size:42px}
+    .hero-actions .cta-btn{padding-left:20px;font-size:14px}
+    .fact b{font-size:30px}
+    .cat-row h3{font-size:22px}
   }
   @media (prefers-reduced-motion:reduce){
     .fx-scan,.node-dot::before,.node-dot::after{display:none}
@@ -343,7 +378,8 @@
       </a>
       <a href="#contact" class="cta-btn cta-leaf">Консультація <span class="arr"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Відкрити меню" aria-expanded="false">
-        <svg class="i" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg>
+        <svg class="i ic-open" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg>
+        <svg class="i ic-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
       </button>
     </div>
   </div>
@@ -355,7 +391,8 @@
   <a class="big" href="#process"><small>03</small>Як працюємо</a>
   <a class="big" href="#catalog"><small>04</small>Каталог</a>
   <a class="big" href="#contact"><small>05</small>Контакти</a>
-  <a href="#" class="cta-btn cta-leaf">Особистий кабінет <span class="arr"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <a href="#contact" class="cta-btn cta-leaf">Отримати консультацію <span class="arr"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <a href="#" class="cta-btn cta-ink" style="margin-top:12px;border:1px solid rgba(255,255,255,.18)">Особистий кабінет <span class="arr"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -368,7 +405,7 @@
     <span class="node-dot" style="left:36%;top:30%;animation-delay:1.1s"></span>
   </div>
   <div class="wrap hero-content">
-    <div class="eyebrow fade-in" style="animation-delay:.2s">Експертні рішення в агробізнесі · з 2020</div>
+    <div class="eyebrow fade-in" style="animation-delay:.2s">Експертні рішення в агробізнесі<span class="since">&nbsp;· з 2020</span></div>
     <h1>
       <span class="ln"><span>Від науки —</span></span>
       <span class="ln"><span><em>до поля.</em></span></span>
@@ -584,7 +621,6 @@
 
   /* ================= Навігація ================= */
   const bar = $('#topbar'), menuBtn = $('#menuBtn'), overlay = $('#overlay'), floatCta = $('#floatCta');
-  let lastY = 0;
   const darkSecs = ['.hero','.process','.contact','footer'].map($);
   function onScroll(){
     const y = scrollY, hh = hero.offsetHeight;
@@ -593,10 +629,8 @@
     const probe = 40;
     const onDark = darkSecs.some(s => { const r = s.getBoundingClientRect(); return r.top <= probe && r.bottom >= probe; });
     bar.classList.toggle('light', !onDark);
-    // ховаємо шапку при прокрутці вниз, показуємо при прокрутці вгору
-    bar.classList.toggle('hide', y > lastY && y > hh * .6 && !overlay.classList.contains('open'));
-    lastY = y;
-    floatCta.classList.toggle('show', y > hh * .8 && $('#contact').getBoundingClientRect().top > innerHeight);
+    bar.classList.toggle('scrolled', y > 10);
+    floatCta.classList.toggle('show', y > hh * .8 && $('#contact').getBoundingClientRect().top > innerHeight && !overlay.classList.contains('open'));
     // активний пункт меню
     let cur = '';
     $$('section[id]').forEach(s => { if(s.getBoundingClientRect().top < innerHeight*.4) cur = s.id; });
@@ -605,13 +639,18 @@
   }
   addEventListener('scroll', onScroll, {passive:true});
 
-  menuBtn.addEventListener('click', () => {
-    const open = overlay.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', open); overlay.setAttribute('aria-hidden', !open);
+  function setMenu(open){
+    overlay.classList.toggle('open', open); bar.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open); menuBtn.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+    overlay.setAttribute('aria-hidden', !open);
     document.body.style.overflow = open ? 'hidden' : '';
-    bar.classList.remove('light');
-  });
-  $$('.overlay a').forEach(a => a.addEventListener('click', () => { overlay.classList.remove('open'); document.body.style.overflow=''; }));
+    floatCta.classList.remove('show');
+    if(!open) onScroll();
+  }
+  menuBtn.addEventListener('click', () => setMenu(!overlay.classList.contains('open')));
+  $$('.overlay a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if(e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+  addEventListener('resize', () => { if(innerWidth > 900 && overlay.classList.contains('open')) setMenu(false); });
 
   /* ================= Reveal ================= */
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15, rootMargin:'0px 0px -6% 0px'});
