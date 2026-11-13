@@ -60,15 +60,15 @@
   .logo-mark{display:flex;align-items:center;font-weight:800;font-size:28px;letter-spacing:-1px;line-height:1}
   .logo-mark svg{width:32px;height:32px}
   .logo-text{font-size:11px;line-height:1.25;font-weight:700;opacity:.85}
-  .pill-nav{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:.4s}
-  .topbar.light .pill-nav{background:rgba(255,255,255,.75);border-color:var(--line-l);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+  .pill-nav{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(11,22,16,.42);border:1px solid rgba(255,255,255,.16);transition:.4s}
+  .topbar.light .pill-nav{background:rgba(255,255,255,.92);border-color:var(--line-l);box-shadow:0 8px 30px rgba(0,0,0,.06)}
   .pill-nav a{padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600;transition:.25s;opacity:.85}
   .pill-nav a:hover{opacity:1;background:rgba(255,255,255,.12)}
   .topbar.light .pill-nav a:hover{background:rgba(31,74,51,.08)}
   .pill-nav a.active{opacity:1;background:var(--leaf);color:var(--ink)}
   .top-actions{display:flex;align-items:center;gap:10px}
-  .icon-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);backdrop-filter:blur(12px);transition:.25s;position:relative;cursor:pointer;color:inherit}
-  .topbar.light .icon-btn{border-color:var(--line-l);background:rgba(255,255,255,.75)}
+  .icon-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(11,22,16,.42);transition:.25s;position:relative;cursor:pointer;color:inherit}
+  .topbar.light .icon-btn{border-color:var(--line-l);background:rgba(255,255,255,.92)}
   .icon-btn:hover{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}
   .icon-btn .tip{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px);background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
   .icon-btn:hover .tip{opacity:1;transform:translate(-50%,0)}
@@ -85,14 +85,13 @@
 
   /* ---------- HERO з 3D-сценою ---------- */
   .hero{position:relative;height:100vh;min-height:680px;max-height:1100px;background:var(--ink);color:#fff;overflow:hidden}
-  .hero-photo{position:absolute;inset:-3% -2% -3% -2%;background:url('img/hero-harvest.jpg') 60% 40%/cover no-repeat;transform:translate3d(0,0,0);backface-visibility:hidden;will-change:transform}
+  .hero-photo{position:absolute;inset:-3% -2% -3% -2%;background:url('img/hero-harvest.jpg') 60% 40%/cover no-repeat;}
   /* Анімовані шари поверх фото */
   .fx{position:absolute;inset:0;pointer-events:none}
-  .fx-sun{background:radial-gradient(circle at 86% 6%,rgba(255,226,170,.42) 0%,rgba(255,200,110,.14) 14%,transparent 36%);animation:sun 6s ease-in-out infinite alternate;will-change:opacity}
-  @keyframes sun{from{opacity:.55}to{opacity:1}}
+  .fx-sun{background:radial-gradient(circle at 86% 6%,rgba(255,226,170,.42) 0%,rgba(255,200,110,.14) 14%,transparent 36%);opacity:.85}
   .fx-scan{overflow:hidden}
   .fx-scan::before{content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:18%;
-    background:linear-gradient(90deg,transparent,rgba(140,255,150,.05) 40%,rgba(170,255,160,.22) 50%,rgba(140,255,150,.05) 60%,transparent);will-change:transform;
+    background:linear-gradient(90deg,transparent,rgba(140,255,150,.05) 40%,rgba(170,255,160,.22) 50%,rgba(140,255,150,.05) 60%,transparent);
     transform:translateX(-120%) skewX(-18deg);animation:scan 7.5s cubic-bezier(.5,0,.3,1) infinite}
   @keyframes scan{0%{transform:translateX(-120%) skewX(-18deg)}70%,100%{transform:translateX(620%) skewX(-18deg)}}
   .node-dot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#9dff8a;box-shadow:0 0 12px #9dff8a,0 0 26px rgba(157,255,138,.6)}
@@ -116,7 +115,7 @@
   .hero-actions{display:flex;align-items:center;gap:26px;margin-top:28px;flex-wrap:wrap}
   .fade-in{opacity:0;transform:translateY(16px);animation:fin .9s var(--ease) forwards}
   @keyframes fin{to{opacity:1;transform:none}}
-  .dir-card{display:grid;gap:2px;min-width:300px;padding:6px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--line-d);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .dir-card{display:grid;gap:2px;min-width:300px;padding:6px;border-radius:20px;background:rgba(11,22,16,.55);border:1px solid var(--line-d)}
   .dir-card a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 16px;border-radius:14px;font-weight:600;font-size:15px;transition:.25s}
   .dir-card a span{display:flex;align-items:center;gap:12px}
   .dir-card a .dot{width:8px;height:8px;border-radius:50%;background:var(--leaf);box-shadow:0 0 12px var(--leaf)}
@@ -222,7 +221,7 @@
   .contact .eyebrow{color:var(--leaf);margin-bottom:26px}
   .contact .h2 em{color:var(--wheat)}
   .contact .lead{margin-top:24px;font-size:18px;opacity:.8;max-width:440px}
-  .form{padding:34px;border-radius:28px;background:rgba(11,22,16,.45);border:1px solid var(--line-d);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+  .form{padding:34px;border-radius:28px;background:rgba(11,22,16,.68);border:1px solid var(--line-d)}
   .form h3{font-size:22px;font-weight:800;margin-bottom:22px}
   .field{position:relative;margin-bottom:14px}
   .field input{width:100%;height:58px;padding:22px 20px 6px;border-radius:14px;border:1px solid var(--line-d);background:rgba(255,255,255,.06);color:#fff;outline:0;transition:.25s}
