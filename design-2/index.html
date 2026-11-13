@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAD — Digital Agro Decision</title>
+<meta name="description" content="Експертні рішення в агробізнесі: агрономічний консалтинг, агроаудит, аналітика та впровадження рішень.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-950:#0f2a1d;
+    --green-900:#163a28;
+    --green-800:#1d4a33;
+    --green-700:#24583d;
+    --green-600:#2f6d4a;
+    --green-500:#3f8a55;
+    --green-100:#e7efe8;
+    --mint:#a9dcb6;
+    --bg:#ffffff;
+    --bg-soft:#f4f6f3;
+    --line:#e2e7e1;
+    --text:#1a2620;
+    --muted:#5d6b63;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(22,58,40,.08);
+    --photo:url('img/hero-field.jpg');
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.logo-mark{font-family:Manrope,Inter,sans-serif}
+  a{color:inherit;text-decoration:none}
+  .container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+  svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;font-weight:600;font-size:15px;transition:.25s;cursor:pointer;border:0;white-space:nowrap}
+  .btn svg.i{width:18px;height:18px}
+  .btn-primary{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;box-shadow:0 8px 20px rgba(29,74,51,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(29,74,51,.32)}
+  .btn-cab{background:rgba(63,138,85,.55);color:#fff;border:1.5px solid rgba(255,255,255,.75);padding:11px 22px;backdrop-filter:blur(6px)}
+  .btn-cab:hover{background:#fff;color:var(--green-800)}
+
+  /* ---------- Header (over hero) ---------- */
+  header{position:sticky;top:0;z-index:50;color:#fff;background:transparent;transition:background .3s,box-shadow .3s}
+  header.scrolled,header.menu-open{background:rgba(18,48,33,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(0,0,0,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:24px}
+  .logo{display:flex;align-items:center;gap:12px;color:#fff}
+  .logo-mark{display:flex;align-items:center;font-weight:800;font-size:30px;letter-spacing:-1px;line-height:1}
+  .logo-mark svg{width:34px;height:34px;margin-right:1px}
+  .logo-text{font-size:11.5px;line-height:1.25;font-weight:600;opacity:.92}
+  .menu{display:flex;gap:34px;font-weight:500;font-size:15px}
+  .menu a{position:relative;padding:6px 0;opacity:.92;transition:.2s}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--mint);transform:scaleX(0);transition:.25s;border-radius:2px}
+  .menu a:hover{opacity:1;color:var(--mint)}
+  .menu a:hover::after{transform:scaleX(1)}
+  .burger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;align-items:center;justify-content:center;cursor:pointer}
+  .mobile-menu{display:none}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;margin-top:-78px;padding-top:78px;overflow:hidden;color:#fff;
+    background:var(--photo) center 30%/cover no-repeat,var(--green-800)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;
+    background:
+      linear-gradient(180deg,rgba(15,42,29,.75) 0%,rgba(15,42,29,0) 30%),
+      linear-gradient(90deg,rgba(18,52,35,.96) 0%,rgba(18,52,35,.88) 35%,rgba(18,52,35,.55) 62%,rgba(18,52,35,.35) 100%)}
+  /* Емблема-листок: окремий світлий фрагмент фото з небом і горами */
+  .hero-emblem{position:relative;flex-shrink:0;width:330px;height:363px;margin-right:50px;
+    background:var(--photo) 88% 0/auto 150% no-repeat;
+    filter:saturate(1.2) brightness(1.12) contrast(1.05);
+    --leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 220'%3E%3Cpath d='M96 218C38 206 2 160 2 66c52 4 92 44 96 100z'/%3E%3Cpath d='M104 218c66-20 96-96 94-214-62 14-98 70-96 162z'/%3E%3C/svg%3E");
+    -webkit-mask:var(--leaf) center/contain no-repeat;mask:var(--leaf) center/contain no-repeat}
+  .hero-emblem::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse at 70% 25%,rgba(255,226,160,.35),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,0) 40%)}
+  .hero-inner{position:relative;z-index:2;min-height:560px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+  .hero-text{max-width:600px;padding:56px 0 72px}
+  .hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:800;line-height:1.08;letter-spacing:-.5px;text-transform:uppercase;text-shadow:0 2px 20px rgba(0,0,0,.15)}
+  .hero .lead{font-size:clamp(17px,1.7vw,21px);margin-top:22px;opacity:.93;max-width:540px}
+
+  /* ---------- Features ---------- */
+  .features{background:#edf1ec;border-bottom:1px solid var(--line)}
+  .features-row{display:grid;grid-template-columns:repeat(3,1fr);padding:40px 0}
+  .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 20px;border-right:1px solid #d3dbd2}
+  .feature:last-child{border:0}
+  .feature .ficon{color:var(--green-600);margin-bottom:12px;transition:.25s}
+  .feature .ficon svg{width:40px;height:40px}
+  .feature .ficon svg.i{stroke-width:1.7}
+  .feature:hover .ficon{transform:translateY(-3px)}
+  .feature h3{font-size:17px;font-weight:700;line-height:1.3;color:var(--green-900)}
+
+  /* ---------- Sections ---------- */
+  section{padding:96px 0}
+  .title{font-size:clamp(30px,3.4vw,42px);color:var(--green-800);font-weight:800;letter-spacing:-.5px;line-height:1.15}
+  .sub{color:var(--muted);margin-top:8px;font-size:16.5px}
+
+  /* About */
+  .about-wrap{background:var(--bg-soft)}
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .about p{font-size:19px;margin:20px 0 26px;max-width:500px}
+  .link{display:inline-flex;align-items:center;gap:8px;color:var(--green-800);font-weight:700;font-size:16px;padding-bottom:3px;border-bottom:2px solid var(--green-500);transition:.2s}
+  .link svg.i{width:18px;height:18px;transition:.2s}
+  .link:hover{color:var(--green-500)}
+  .link:hover svg.i{transform:translateX(4px)}
+  .steps{display:grid;gap:12px}
+  .step{display:flex;gap:18px;align-items:center;background:#fff;border:1px solid transparent;border-radius:var(--radius);padding:14px 20px 14px 14px;box-shadow:0 2px 10px rgba(0,0,0,.03);transition:.25s}
+  .step:hover{border-color:var(--line);box-shadow:var(--shadow);transform:translateX(4px)}
+  .num{width:54px;height:54px;flex-shrink:0;border-radius:12px;background:var(--green-100);color:var(--green-700);font-family:Manrope;font-weight:700;font-size:20px;display:grid;place-items:center}
+  .step h3{font-size:16.5px;font-weight:700;color:var(--green-900)}
+  .step p{color:var(--muted);font-size:14px;margin:2px 0 0}
+
+  /* Services */
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+  .svc{display:flex;gap:26px;align-items:center;padding:30px 32px;border-radius:16px;background:#fff;border:1px solid #edf0ec;box-shadow:0 6px 24px rgba(22,58,40,.06);transition:.3s}
+  .svc:hover{transform:translateY(-4px);border-color:#cfe0d3;box-shadow:0 18px 36px rgba(22,58,40,.12)}
+  .svc .sicon{width:64px;height:64px;flex-shrink:0;display:grid;place-items:center;color:var(--green-600)}
+  .svc .sicon svg.i{width:56px;height:56px;stroke-width:1.5}
+  .svc h3{font-size:20px;font-weight:800;color:var(--green-900);line-height:1.25}
+  .svc p{color:var(--muted);font-size:14.5px;margin-top:6px}
+  .center{text-align:center;margin-top:40px}
+
+  /* Catalog (dark) */
+  .catalog{position:relative;color:#fff;border-radius:32px 32px 0 0;padding-bottom:72px;
+    background:radial-gradient(ellipse at 85% -10%,rgba(120,180,130,.22),transparent 55%),
+               linear-gradient(160deg,var(--green-800) 0%,var(--green-900) 60%,var(--green-950) 100%)}
+  .catalog .title{color:#fff}
+  .catalog .sub{color:rgba(255,255,255,.75)}
+  .search{display:flex;align-items:center;background:#fff;border-radius:999px;padding:6px 6px 6px 22px;margin:32px 0 26px;transition:.2s}
+  .search:focus-within{box-shadow:0 0 0 4px rgba(169,220,182,.35)}
+  .search input{flex:1;border:0;outline:0;font:inherit;font-size:15px;padding:9px 0;color:var(--text);background:transparent;min-width:0}
+  .search button{width:42px;height:42px;border-radius:50%;border:0;background:var(--green-800);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.2s}
+  .search button:hover{background:var(--green-600)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:118px;border:1.5px solid rgba(255,255,255,.28);border-radius:14px;padding:22px 16px;text-align:center;background:rgba(255,255,255,.03);transition:.25s}
+  .tile:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7);transform:translateY(-3px)}
+  .tile svg.i{width:36px;height:36px;stroke-width:1.5}
+  .tile h3{font-size:16.5px;font-weight:700;line-height:1.3}
+
+  /* Footer */
+  footer{background:var(--green-950);color:#fff;padding:34px 0 22px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  footer .menu{gap:30px;font-size:14.5px}
+  .social{display:flex;gap:12px}
+  .social a{width:38px;height:38px;border-radius:50%;background:#fff;color:var(--green-900);display:grid;place-items:center;transition:.25s}
+  .social a:hover{transform:translateY(-2px);background:var(--mint)}
+  .social svg{width:18px;height:18px}
+  .copy{text-align:center;font-size:13px;opacity:.6;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1100px){
+    .hero-emblem{width:270px;height:297px;margin-right:0}
+    .hero-text{max-width:520px}
+  }
+  @media (max-width:900px){
+    header .menu,header .btn-cab{display:none}
+    .burger{display:flex}
+    .mobile-menu{display:block;max-height:0;overflow:hidden;transition:max-height .3s}
+    .mobile-menu.open{max-height:360px}
+    .mobile-menu a{display:block;padding:14px 24px;border-top:1px solid rgba(255,255,255,.12);font-weight:500}
+    .mobile-menu .btn{margin:16px 24px 20px;border:1.5px solid rgba(255,255,255,.75)}
+    .hero-inner{min-height:0;flex-direction:column;align-items:flex-start;gap:0}
+    .hero-text{padding:36px 0 28px;max-width:none}
+    .hero::before{background:linear-gradient(180deg,rgba(18,52,35,.95) 0%,rgba(18,52,35,.85) 45%,rgba(18,52,35,.35) 75%,rgba(18,52,35,.25) 100%)}
+    .hero-emblem{width:210px;height:231px;align-self:center;margin:0 0 40px}
+    .features-row{grid-template-columns:1fr;padding:6px 0}
+    .feature{border-right:0;border-bottom:1px solid #d3dbd2;padding:22px}
+    .about,.svc-grid{grid-template-columns:1fr}
+    .about{gap:36px}
+    section{padding:64px 0}
+    .catalog{border-radius:24px 24px 0 0}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .foot{flex-direction:column;text-align:center}
+    footer .menu{flex-wrap:wrap;justify-content:center;gap:20px}
+  }
+  @media (max-width:520px){
+    .svc{padding:22px;gap:18px}
+    .svc .sicon{width:48px;height:48px}
+    .svc .sicon svg.i{width:44px;height:44px}
+    .svc h3{font-size:18px}
+    .grid{gap:12px}
+    .tile{min-height:104px;padding:16px 10px}
+    .tile h3{font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="DAD — на головну">
+      <span class="logo-mark">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16.5" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 31V19" stroke="#a9dcb6" stroke-width="3" stroke-linecap="round"/><path d="M20 21c-4.5 0-8-3-8.5-8 4.8.2 8.2 3 8.5 8zM20 19.5c.3-4.6 3.4-7.6 8-8-.3 4.8-3.6 7.8-8 8z" fill="#a9dcb6"/></svg>AD
+      </span>
+      <span class="logo-text">Digital Agro<br>Decision</span>
+    </a>
+    <nav class="menu">
+      <a href="#about">Про DAD</a>
+      <a href="#services">Послуги</a>
+      <a href="#catalog">Каталог рішень</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+    <a href="#" class="btn btn-cab">Кабінет
+      <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></a>
+    <button class="burger" aria-label="Меню" onclick="document.querySelector('.mobile-menu').classList.toggle('open');document.querySelector('header').classList.toggle('menu-open')">
+      <svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu">
+    <a href="#about">Про DAD</a><a href="#services">Послуги</a><a href="#catalog">Каталог рішень</a><a href="#contacts">Контакти</a>
+    <a href="#" class="btn btn-cab" style="display:inline-flex">Кабінет</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>Експертні рішення<br>в агробізнесі.</h1>
+      <p class="lead">Розробка та впровадження ефективних рішень для агропідприємств будь-якого розміру.</p>
+    </div>
+    <div class="hero-emblem" aria-hidden="true"></div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="container features-row">
+    <div class="feature">
+      <div class="ficon"><svg class="i" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></svg></div>
+      <h3>Агрономічний<br>консалтинг</h3>
+    </div>
+    <div class="feature">
+      <div class="ficon"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="4" height="7" rx="1"/><rect x="10" y="8.5" width="4" height="11.5" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div>
+      <h3>Аудит і<br>аналітика</h3>
+    </div>
+    <div class="feature">
+      <div class="ficon" style="color:var(--green-800)"><svg class="i" viewBox="0 0 24 24" style="stroke-width:1.8"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.9-3.9a3 3 0 0 0-4.2 0l-.9.9a1 1 0 1 1-3-3l2.8-2.8a5.8 5.8 0 0 1 7.1-.9l.5.3a2 2 0 0 0 1.4.3L21 4"/><path d="m21 3 1 11h-2M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3M3 4h8"/></svg></div>
+      <h3>Практичні<br>матеріали</h3>
+    </div>
+  </div>
+</div>
+
+<section class="about-wrap" id="about">
+  <div class="container about">
+    <div>
+      <h2 class="title">Про DAD</h2>
+      <p>Трансформуємо наукові дослідження і розробки в ефективні та практичні рішення для агробізнесу.</p>
+      <a href="#" class="link">Дізнатися більше <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><div><h3>Працюємо з 2020 року</h3><p>Компанія заснована у 2020 році.</p></div></div>
+      <div class="step"><div class="num">02</div><div><h3>Поєднуємо різну експертизу</h3><p>Агрономи, науковці та аналітики.</p></div></div>
+      <div class="step"><div class="num">03</div><div><h3>Від дослідження до впровадження</h3><p>Практичні рішення для поля.</p></div></div>
+      <div class="step"><div class="num">04</div><div><h3>Співпраця</h3><p>З університетами та партнерами.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="title">Послуги</h2>
+    <p class="sub">Комплексний підхід для розвитку вашого агробізнесу</p>
+    <div class="svc-grid">
+      <a href="#" class="svc">
+        <div class="sicon"><svg class="i" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></svg></div>
+        <div><h3>Агрономічний<br>консалтинг</h3><p>Рекомендації та план дій</p></div>
+      </a>
+      <a href="#" class="svc">
+        <div class="sicon"><svg class="i" viewBox="0 0 24 24"><circle cx="7" cy="17" r="3"/><circle cx="18.5" cy="18" r="2"/><path d="M10 17h6.5M4 14V8h7l2.5 5H20a1 1 0 0 1 1 1v3M7 8V5h4M15.5 13V9"/></svg></div>
+        <div><h3>Агроаудит і<br>польові обстеження</h3><p>Звіт із висновками</p></div>
+      </a>
+      <a href="#" class="svc">
+        <div class="sicon"><svg class="i" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></div>
+        <div><h3>Аналітика та<br>моделювання</h3><p>Розрахунки й сценарії</p></div>
+      </a>
+      <a href="#" class="svc">
+        <div class="sicon"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div>
+        <div><h3>Розробка та впровадження<br>рішень</h3><p>Практичне рішення та супровід</p></div>
+      </a>
+    </div>
+    <div class="center"><a href="#contacts" class="btn btn-primary">Надіслати запит <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<section class="catalog" id="catalog">
+  <div class="container">
+    <h2 class="title">Каталог рішень</h2>
+    <p class="sub">Шість напрямів для ефективного агровиробництва</p>
+    <label class="search">
+      <input type="text" placeholder="Пошук рішень...">
+      <button type="button" aria-label="Шукати"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+    </label>
+    <div class="grid">
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.3 18.8A2 2 0 0 0 6 22h12a2 2 0 0 0 1.7-3.2L14 9V3"/><path d="M7 15h10"/></svg><h3>Методики</h3></a>
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></svg><h3>Інструкції</h3></a>
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg><h3>Шаблони</h3></a>
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg><h3>Прогнози</h3></a>
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><h3>Аналітика</h3></a>
+      <a href="#" class="tile"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><h3>Комплексне<br>обслуговування</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer id="contacts">
+  <div class="container">
+    <div class="foot">
+      <a href="#top" class="logo">
+        <span class="logo-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16.5" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 31V19" stroke="#a9dcb6" stroke-width="3" stroke-linecap="round"/><path d="M20 21c-4.5 0-8-3-8.5-8 4.8.2 8.2 3 8.5 8zM20 19.5c.3-4.6 3.4-7.6 8-8-.3 4.8-3.6 7.8-8 8z" fill="#a9dcb6"/></svg>AD
+        </span>
+        <span class="logo-text">Digital Agro<br>Decision</span>
+      </a>
+      <nav class="menu">
+        <a href="#about">Про DAD</a><a href="#services">Послуги</a><a href="#catalog">Каталог рішень</a><a href="#contacts">Контакти</a>
+      </nav>
+      <div class="social">
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .6 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.8 31 31 0 0 0-.4-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.4 1 11.8c-1.1-.3-1.1-1.1.2-1.6l19.4-7.5c.9-.3 1.7.2 1.3 1.6z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+      </div>
+    </div>
+    <div class="copy">© 2026 DAD. Усі права захищено.</div>
+  </div>
+</footer>
+
+<script>
+  const h=document.querySelector('header');
+  addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>10),{passive:true});
+  document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>{
+    document.querySelector('.mobile-menu').classList.remove('open');h.classList.remove('menu-open');
+  }));
+</script>
+</body>
+</html>
