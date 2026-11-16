@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <title>DAD — Від науки до поля</title>
 <meta name="description" content="Digital Agro Decision: агрономічний консалтинг, агроаудит, аналітика та впровадження рішень для агропідприємств будь-якого розміру.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Michroma&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0b1610;
@@ -55,10 +57,18 @@
   .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:.4s var(--ease);color:#fff}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
   .topbar.light{color:var(--text)}
-  .logo{display:flex;align-items:center;gap:10px}
-  .logo-mark{display:flex;align-items:center;font-weight:800;font-size:28px;letter-spacing:-1px;line-height:1}
-  .logo-mark svg{width:32px;height:32px}
-  .logo-text{font-size:11px;line-height:1.25;font-weight:700;opacity:.85}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-emb{position:relative;width:46px;height:46px;flex-shrink:0}
+  .logo-emb img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .3s}
+  .logo-emb .on-light{opacity:0}
+  .topbar.light .logo-emb .on-light{opacity:1}
+  .topbar.light .logo-emb .on-dark{opacity:0}
+  .topbar.menu-open .logo-emb .on-light{opacity:0}
+  .topbar.menu-open .logo-emb .on-dark{opacity:1}
+  .logo-word{display:flex;flex-direction:column;justify-content:center;gap:2px;padding-left:12px;border-left:1px solid currentColor;border-left-color:color-mix(in srgb,currentColor 35%,transparent);font-family:Michroma,Manrope,sans-serif;font-size:9.5px;line-height:1.15;letter-spacing:.14em}
+  .logo-word b{font-weight:400}
+  .logo-word b.g{color:#3fbf5a}
+  .logo-tag{display:block;margin-top:6px;font-family:Manrope,sans-serif;font-size:10px;font-weight:700;letter-spacing:.24em;color:#3fbf5a}
   .pill-nav{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(11,22,16,.42);border:1px solid rgba(255,255,255,.16);transition:.4s}
   .topbar.light .pill-nav{background:rgba(255,255,255,.92);border-color:var(--line-l);box-shadow:0 8px 30px rgba(0,0,0,.06)}
   .pill-nav a{padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600;transition:.25s;opacity:.85}
@@ -68,6 +78,7 @@
   .top-actions{display:flex;align-items:center;gap:10px}
   .icon-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(11,22,16,.42);transition:.25s;position:relative;cursor:pointer;color:inherit}
   .topbar.light .icon-btn{border-color:var(--line-l);background:rgba(255,255,255,.92)}
+  .topbar.menu-open .icon-btn{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff}
   @media (hover:hover){.icon-btn:hover{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}}
   .icon-btn .tip{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px);background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
   .icon-btn:hover .tip{opacity:1;transform:translate(-50%,0)}
@@ -251,6 +262,8 @@
   .foot-grid a{display:block;padding:5px 0;opacity:.85;transition:.2s}
   .foot-grid a.logo{display:flex;padding:0;opacity:1}
   .foot-grid a.logo:hover{transform:none;color:inherit}
+  .foot-logo .logo-emb{width:60px;height:60px}
+  .foot-logo .logo-word{font-size:12px;gap:3px;padding-left:14px}
   .foot-grid a:hover{opacity:1;color:var(--leaf);transform:translateX(4px)}
   .foot-grid p{opacity:.65;max-width:300px;margin-top:18px}
   .social{display:flex;gap:10px;margin-top:24px}
@@ -285,8 +298,8 @@
     .top-actions .icon-btn{width:44px;height:44px}
     .icon-btn .tip{display:none}
     .menu-btn{display:grid}
-    .logo-mark{font-size:26px}
-    .logo-mark svg{width:30px;height:30px}
+    .logo-emb{width:40px;height:40px}
+    .logo-word{font-size:8.5px;padding-left:10px}
     /* перший екран */
     .hero{height:auto;min-height:max(600px,100vh);min-height:max(600px,100svh);max-height:none;display:flex;flex-direction:column}
     .hero-content{flex:1;height:auto;justify-content:flex-start;padding-top:96px;padding-bottom:28px}
@@ -343,7 +356,7 @@
   @media (max-width:430px){.hero .since{display:none}}
   @media (max-width:380px){
     .wrap{padding:0 16px}
-    .logo-text{display:none}
+    .logo-word{font-size:8px;letter-spacing:.1em}
     .hero h1{font-size:42px}
     .hero-actions .cta-btn{padding-left:20px;font-size:14px}
     .fact b{font-size:30px}
@@ -361,11 +374,9 @@
 <!-- ============ Навігація ============ -->
 <div class="topbar" id="topbar">
   <div class="wrap">
-    <a href="#top" class="logo" aria-label="DAD — на початок">
-      <span class="logo-mark">
-        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16.5" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 31V19" stroke="#8fd16a" stroke-width="3" stroke-linecap="round"/><path d="M20 21c-4.5 0-8-3-8.5-8 4.8.2 8.2 3 8.5 8zM20 19.5c.3-4.6 3.4-7.6 8-8-.3 4.8-3.6 7.8-8 8z" fill="#8fd16a"/></svg>AD
-      </span>
-      <span class="logo-text">Digital Agro<br>Decision</span>
+    <a href="#top" class="logo" aria-label="Digital Agro Decision — на початок">
+      <span class="logo-emb"><img class="on-dark" src="img/logo-emblem-white.png" alt=""><img class="on-light" src="img/logo-emblem.png" alt=""></span>
+      <span class="logo-word"><b>DIGITAL</b><b class="g">AGRO</b><b>DECISION</b></span>
     </a>
     <nav class="pill-nav" aria-label="Основна навігація">
       <a href="#about">Про нас</a>
@@ -575,10 +586,11 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="#top" class="logo">
-          <span class="logo-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16.5" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 31V19" stroke="#8fd16a" stroke-width="3" stroke-linecap="round"/><path d="M20 21c-4.5 0-8-3-8.5-8 4.8.2 8.2 3 8.5 8zM20 19.5c.3-4.6 3.4-7.6 8-8-.3 4.8-3.6 7.8-8 8z" fill="#8fd16a"/></svg>AD</span>
-          <span class="logo-text">Digital Agro<br>Decision</span>
+        <a href="#top" class="logo foot-logo" aria-label="Digital Agro Decision">
+          <span class="logo-emb"><img src="img/logo-emblem-white.png" alt=""></span>
+          <span class="logo-word"><b>DIGITAL</b><b class="g">AGRO</b><b>DECISION</b></span>
         </a>
+        <span class="logo-tag">DECISIONS POWERED BY DATA</span>
         <p>Експертні рішення в агробізнесі — від наукових досліджень до практики в полі.</p>
         <div class="social">
           <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .6 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.8 31 31 0 0 0-.4-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
